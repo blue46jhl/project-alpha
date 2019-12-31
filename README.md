@@ -1,2 +1,2 @@
 # project-alpha
-A web application designed to be an interactive forum for undergraduate students
+A web application by a couple of geniuses
