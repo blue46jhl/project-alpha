@@ -1,0 +1,43 @@
+version: "2"
+services:
+    client:
+        image: forumapp
+        restart: always
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./forumapp:/forumapp
+            - /forumapp/node_modules
+        entrypoint: ["npm", "start"]
+        links:
+            - api
+        networks:
+          -  webappnetwork
+        build: ./forumapp/
+    api:
+        image: api
+        restart: always
+        ports:
+            - "9000:9000"
+        volumes:
+            - ./api:/api
+            - /api/node_modules
+        depends_on:
+            - mongodb
+        networks:
+          -  webappnetwork
+        build: ./api/
+    mongodb:
+        image: mongo
+        restart: always
+        container_name: mongodb
+        volumes:
+            - /data/db
+        ports:
+            - 27017:27017
+        command: mongod --noauth
+        networks:
+            - webappnetwork
+networks:
+    webappnetwork:
+      driver: bridge
