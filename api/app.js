@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const bodyParser = require('body_parser')
+const bodyParser = require('body-parser')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
